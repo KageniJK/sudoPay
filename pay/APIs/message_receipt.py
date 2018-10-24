@@ -30,3 +30,11 @@ def send_receipt( message , customer):
         print(response)
 
     sms.send(message, ["+"+customer], callback=on_finish)
+
+
+if __name__ == '__main__':
+
+    test_message = "your order is as follows: bla bla"
+    test_number = '254729309658'
+    
+    send_receipt(test_message,test_number)
