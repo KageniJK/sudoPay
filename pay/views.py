@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .generate_qr import generate_code
-# from AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
+import africastalking as africas
 
 def generate_id ( request ):
     '''
