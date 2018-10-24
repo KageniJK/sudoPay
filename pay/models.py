@@ -7,16 +7,20 @@ from django.db.models.signals import post_save
 
 
 class Account(models.Model):
+    '''
+    Model that define user's account 
+    '''
     ACCEPTED_CHOICES = (
         ("VISA", "VISA"),
         ("MasterCard", "MasterCard"),
         ("American Express", "American Express"),
         ("MEAL Card", "MEAL Card"),
     )
-    card_type = models.CharField(choices=ACCEPTED_CHOICES)
-    card_number = models.PositiveIntegerField(max_length=16)
-    cvv = models.PositiveIntegerField(max_length=3)
+    card_type = models.CharField(choices=ACCEPTED_CHOICES, max_length=100 )
+    card_number = models.PositiveIntegerField()
+    cvv = models.PositiveIntegerField()
     password = models.TextField()
+
 
 
 class Profile(models.Model):
@@ -26,7 +30,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
     profile_picture = models.ImageField(
         upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
-    phone_number = models.PositiveIntegerField( max_length=15 , blank=True,null=True )
+    phone_number = models.PositiveIntegerField( blank=True,null=True )
     email = models.EmailField()
     account = models.ForeignKey(Account)
     about = models.TextField(max_length=100, blank=True, null=True )

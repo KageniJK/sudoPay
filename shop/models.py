@@ -14,7 +14,7 @@ class Goodie ( models.Model ):
     '''
     Basically this is Shop Items Model
     '''
-    name = models.CharField(max_lenght=250)
+    name = models.CharField(max_length=250)
     category = models.ForeignKey(Catalog)
     description = models.TextField()
     catalog_date = models.DateField(auto_now=True)

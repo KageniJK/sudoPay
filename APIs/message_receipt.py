@@ -1,20 +1,21 @@
 import africastalking as af 
 from decouple import config, Csv
 
+# Initialize SDK
+
+# use 'sandbox' for development in the test environment
+username = config('AF_USERNAME')
+
+# use your sandbox app API key for development in the test environment
+api_key = config('AF_KEY')
+
+af.initialize(username, api_key)
+
+
+
+
+
 def send_receipt( message , customer):
-    # Initialize SDK
-
-    # use 'sandbox' for development in the test environment
-    username = config('AF_USERNAME')
-
-
-    # use your sandbox app API key for development in the test environment
-    api_key = config('AF_KEY')
-
-
-    af.initialize(username, api_key)
-
-
     # Initialize a service e.g. SMS
     sms = af.SMS
     # Use the service synchronously
