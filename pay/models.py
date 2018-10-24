@@ -14,6 +14,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
     profile_picture = models.ImageField(
         upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
+    phone_number = models.PositiveIntegerField( max_length=15 , blank=True,null=True )
+    email = models.EmailField()
     about = models.TextField(max_length=100, blank=True, null=True )
 
     def __str__(self):
