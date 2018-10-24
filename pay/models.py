@@ -13,7 +13,7 @@ class Profile(models.Model):
     '''
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
     profile_picture = models.ImageField(
-        upload_to='static/profile', default="https://imgur.com/jVr43h8.png", blank=True)
+        upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
     about = models.TextField(max_length=100, blank=True, null=True )
 
     def __str__(self):
