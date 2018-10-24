@@ -8,10 +8,15 @@ from django.db.models.signals import post_save
 
 class Account(models.Model):
     ACCEPTED_CHOICES = (
-
+        ("VISA", "VISA"),
+        ("MasterCard", "MasterCard"),
+        ("American Express", "American Express"),
+        ("MEAL Card", "MEAL Card"),
     )
-    name = 
-    password = models.p
+    card_type = models.CharField(choices=ACCEPTED_CHOICES)
+    card_number = models.PositiveIntegerField(max_length=16)
+    cvv = models.PositiveIntegerField(max_length=3)
+    password = models.TextField()
 
 
 class Profile(models.Model):
