@@ -1,5 +1,15 @@
 from django.db import models
 
+class Catalog(models.Model):
+    '''
+    Items category
+    '''
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Goodie ( models.Model ):
     '''
     Basically this is Shop Items Model
