@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+{{block.super}}
+
+<div class="wrapper">
+    <div class="page">
+        <div class="page-inner">
+            <div class="page-section row ">
+
+                <div class="col-md-2"></div>
+
+                <!-- .masonry-item -->
+                <div class="masonry-item col-md-8 ">
+                    <!-- .card -->
+                    <section class="card card-fluid">
+                        <!-- .card-body -->
+                        <div class="card-body text-center">
+                            <!-- .user-avatar -->
+                            <img class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
+                            <!-- /.user-avatar -->
+                            <h3 class="card-title text-truncate">
+                                <a href="user-profile.html"> {{ profile.user.firstname }} {{ profile.user.secondname }} </a>
+                            </h3>
+
+                            <h3 class="card-subtitle text-muted mb-3">
+                                <a href="/hood/{{ profile.neighborhood.name }}">
+                                    {{ profile.neighborhood.name }}
+                                </a>
+                                
+                            </h3>
+                            <h6 class="card-subtitle text-muted mb-3"> @ {{ profile.user.username }} </h6>
+                            <!-- .skills -->
+                            <p class="skills">
+                                <!-- .card -->
+                                <section class="card card-fluid">
+                                    <!-- .card-body -->
+                                    <div class="card-body">
+
+                                        <h5 class="card-title">{{ neighbors.count }} Members Online </h5>
+                                        {% if neighbors %}
+                                        {% for neiba in neighbors %}
+                                        <figure class="user-avatar user-avatar-lg dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <img src="{{ neiba.profile_picture.url }}" alt="  ">
+                                                <span class="avatar-badge has-indicator online">
+                                                    <i class="fa fa-check"></i>
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a href="/member/{{ neiba.user.username }}" class="dropdown-item">Online</a>
+                                            </div>
+                                        </figure>
+                                        {% endfor %}
+                                        {% endif %}
+
+
+                                    </div>
+                                    <!-- /.card-body -->
+                                </section>
+                                <!-- /.card -->
+                            </p>
+                            <!-- /.skills -->
+                            <p class="text-muted">
+                                {{ profile.about }}
+                            </p>
+                            <p>
+                                {% if profile.user == request.user %}
+                                <a href="/{{ profile.user.username }}/edit" class="btn btn-primary circle">
+                                    Edit Profile
+                                    <i class="fa fa-arrow-right ml-2"></i>
+                                </a>
+                                {% else %}
+                                <button class="btn btn-primary circle"> poke your neighbor ! </button>
+                                {% endif %}
+
+                                <a class="btn btn-primary circle" href="{% url 'new_hood' %}">
+                                    create hood
+                                </a>
+                            </p>
+                        </div>
+                        <!-- /.card-body -->
+                    </section>
+                    <!-- /.card -->
+                </div>
+                <!-- /.masonry-item -->
+
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -22,8 +22,9 @@ def generate_id ( request ):
     qr = generate_code(user_info)
     qr_info = Profile(instance = request.user.profile)
     qr_info.qr_id = qr
+    qr_info.save()
 
-    return redirect('profile')
+    return redirect('profile',request.user.username)
 
 
 
@@ -67,15 +68,29 @@ def profile(request, user_username=None):
 
 
 def update_profile(request):
+    message = None
+
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST)
         profile_form = ProfileUpdateForm(request.POST , request.FILES )
         acc_form = AccountForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid() and acc_form.is_valid():
-            user_info = user_form.save()
-            profile_info = profile_form.save()
-            acc_info = acc_form.save()
+            user_form.save()
+            profile_form.save()
+            acc_form.save()
             message = f"{request.user.username}'s account updated successfully !"
 
-            return redirect('userprofile', request.user)
+            return redirect('userprofile', request.user.username)
+    else:
+        user_form = UserUpdateForm()
+        profile_form = ProfileUpdateForm()
+        acc_form = AccountForm()
+    
+        context = {
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'acc_form' : acc_form ,
+            'message': message
+        }
+        return render(request, 'profile/edit_profile.html', context)
