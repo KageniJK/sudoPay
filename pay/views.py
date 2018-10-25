@@ -1,9 +1,9 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from .generate_qr import generate_code
 
-# from .APIs.message_receipt import *
-# import APIs.message_receipt.send_receipt
 import receipt
+from .forms import *
+
 
 def generate_id ( request ):
     '''
@@ -19,7 +19,9 @@ def generate_id ( request ):
         'email' : customer.email
     }
 
-    generate_code(user_info)
+    qr = generate_code(user_info)
+    qr_info = Profile(instance = request.user.profile)
+    qr_info.qr_id = qr
 
     return redirect('profile')
 
@@ -47,3 +49,33 @@ def check_out(request):
     return redirect('shop')
 
 
+def pay_index(request):
+    return render(request,'pay_index.html')
+
+
+def profile(request, user_username=None):
+    '''
+    Function view to a customer profile 
+    '''
+    profile = get_object_or_404(Profile, user__username=user_username)
+
+    data = {
+        'profile': profile,
+    }
+    return render(request, 'profile/profile.html', data)
+
+
+
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST)
+        profile_form = ProfileUpdateForm(request.POST , request.FILES )
+        acc_form = AccountForm(request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid() and acc_form.is_valid():
+            user_info = user_form.save()
+            profile_info = profile_form.save()
+            acc_info = acc_form.save()
+            message = f"{request.user.username}'s account updated successfully !"
+
+            return redirect('userprofile', request.user)

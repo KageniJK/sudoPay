@@ -20,6 +20,7 @@ class Account(models.Model):
     card_number = models.PositiveIntegerField()
     cvv = models.PositiveIntegerField()
     password = models.TextField()
+    owner = models.OneToOneField(User)
 
 
 
@@ -32,8 +33,9 @@ class Profile(models.Model):
         upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
     phone_number = models.PositiveIntegerField( blank=True,null=True )
     email = models.EmailField()
-    account = models.ForeignKey(Account)
     about = models.TextField(max_length=100, blank=True, null=True )
+    qr_id = models.ImageField(
+        upload_to='static/profile', blank=True , null=True )
 
     def __str__(self):
         return self.user.username
