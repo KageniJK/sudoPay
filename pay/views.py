@@ -1,31 +1,9 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from .generate_qr import generate_code
+from qr_code.qrcode.utils import QRCodeOptions
 
 from . import receipt
 from .forms import *
-
-
-def generate_id ( request ):
-    '''
-    Customer wishes to have an ID of his/her own ! 
-    '''
-    customer = request.user.profile
-
-    user_info = {
-        'name' : customer.username ,
-        'image': customer.profile_picture ,
-        'mobile': request.user.phone_number ,
-        'country': customer.country ,
-        'email' : customer.email
-    }
-
-    qr = generate_code(user_info)
-    qr_info = Profile(instance = request.user.profile)
-    qr_info.qr_id = qr
-    qr_info.save()
-
-    return redirect('profile',request.user.username)
-
 
 
 def authenticate(request):
@@ -59,9 +37,21 @@ def profile(request, user_username=None):
     Function view to a customer profile 
     '''
     profile = get_object_or_404(Profile, user__username=user_username)
+    bank_info = get_object_or_404(Account, user__username=user_username)
+    customer = request.user.profile
+
+    user_info = {
+        'NAME': customer.user.username,
+        'AVATAR': customer.profile_picture,
+        'MOBILE': customer.phone_number,
+        'CARD_NO' : bank_info.card_number ,
+        'country': customer.country,
+        'email': customer.user.email
+    }
 
     data = {
         'profile': profile,
+        'user_info': user_info
     }
     return render(request, 'profile/profile.html', data)
 
@@ -76,21 +66,24 @@ def update_profile(request):
         acc_form = AccountForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid() and acc_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            acc_form.save()
+            user_info = user_form.save(commit=False)
+            profile_info = profile_form.save(commit=False)
+            acc_info = acc_form.save(commit=False)
+            user_info.save()
+            profile_info.save()
+            acc_info.save()
             message = f"{request.user.username}'s account updated successfully !"
 
             return redirect('userprofile', request.user.username)
     else:
-        user_form = UserUpdateForm()
-        profile_form = ProfileUpdateForm()
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
         acc_form = AccountForm()
     
-        context = {
-            'user_form': user_form,
-            'profile_form': profile_form,
-            'acc_form' : acc_form ,
-            'message': message
-        }
-        return render(request, 'profile/edit_profile.html', context)
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'acc_form' : acc_form ,
+        'message': message
+    }
+    return render(request, 'profile/edit_profile.html', context)

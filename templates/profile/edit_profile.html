@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load bootstrap4 %}
 
 {% block content %}
 {{block.super}}
-
-<div class="wrapper">
+<div style="background:#BDBDBD" class="container">
+    <hr>
     <div class="page">
         <div class="page-inner">
             <div class="page-section row ">
@@ -13,7 +13,7 @@
 
                 <!-- .masonry-item -->
                 <div class="masonry-item col-md-8 ">
-                    <header style="background: #346cb0;color: white" class="card-header text-center active"> Edit Profile  </header>
+                    <header style="background: #512DA8;color: white" class="card-header text-center active"> Edit Profile  </header>
                     <hr>
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -21,9 +21,9 @@
                             {% bootstrap_form profile_form %}
                             {% bootstrap_form acc_form %}
                             <div class="row justify-content-end">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">update</button>
                             </div>
-                        </form>>
+                        </form>
                 </div>
                 <!-- /.masonry-item -->
 
@@ -31,6 +31,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
 </div>
 
 {% endblock %}

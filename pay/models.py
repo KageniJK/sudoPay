@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from django_countries.fields import CountryField
 
 class Account(models.Model):
     '''
@@ -33,10 +34,7 @@ class Profile(models.Model):
     profile_picture = models.ImageField(
         upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
     phone_number = models.PositiveIntegerField( blank=True,null=True )
-    email = models.EmailField()
-    about = models.TextField(max_length=100, blank=True, null=True )
-    qr_id = models.ImageField(
-        upload_to='static/profile', blank=True , null=True )
+    country = CountryField(blank_label='(select country)' , null=True , blank=True)
 
     def __str__(self):
         return self.user.username

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrap4' ,
     'pay.apps.PayConfig' ,
     'shop.apps.ShopConfig',
+    'qr_code'
 ]
 
 MIDDLEWARE = [

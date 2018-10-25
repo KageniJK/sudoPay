@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load bootstrap4 %}
+{% load qr_code %}
+
 
 {% block content %}
 {{block.super}}
@@ -25,7 +27,7 @@
                             </h3>
 
                             <h3 class="card-subtitle text-muted mb-3">
-                                <a href="/hood/{{ profile.neighborhood.name }}">
+                                <a href="">
                                     {{ profile.neighborhood.name }}
                                 </a>
                                 
@@ -37,25 +39,7 @@
                                 <section class="card card-fluid">
                                     <!-- .card-body -->
                                     <div class="card-body">
-
-                                        <h5 class="card-title">{{ neighbors.count }} Members Online </h5>
-                                        {% if neighbors %}
-                                        {% for neiba in neighbors %}
-                                        <figure class="user-avatar user-avatar-lg dropdown">
-                                            <a href="#" data-toggle="dropdown">
-                                                <img src="{{ neiba.profile_picture.url }}" alt="  ">
-                                                <span class="avatar-badge has-indicator online">
-                                                    <i class="fa fa-check"></i>
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a href="/member/{{ neiba.user.username }}" class="dropdown-item">Online</a>
-                                            </div>
-                                        </figure>
-                                        {% endfor %}
-                                        {% endif %}
-
-
+                                        {% qr_from_text user_info size="M" %}
                                     </div>
                                     <!-- /.card-body -->
                                 </section>
@@ -67,16 +51,14 @@
                             </p>
                             <p>
                                 {% if profile.user == request.user %}
-                                <a href="/{{ profile.user.username }}/edit" class="btn btn-primary circle">
-                                    Edit Profile
+                                <a href="/account/edit" class="btn btn-primary circle">
+                                    Edit account
                                     <i class="fa fa-arrow-right ml-2"></i>
                                 </a>
-                                {% else %}
-                                <button class="btn btn-primary circle"> poke your neighbor ! </button>
                                 {% endif %}
 
-                                <a class="btn btn-primary circle" href="{% url 'new_hood' %}">
-                                    create hood
+                                <a class="btn btn-primary circle" href="/generate/sudopay/id">
+                                    generate sudoID
                                 </a>
                             </p>
                         </div>

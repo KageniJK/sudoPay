@@ -6,6 +6,8 @@ from . import views
 urlpatterns = [
     url(r'^sudopay/$' , views.pay_index , name='pay_index') ,
     url(r'^member/(?P<user_username>\w+)/$', views.profile, name='userprofile'),
+    url(r'^account/edit$', views.update_profile, name='edit_profile'),
+    url(r'^generate/sudopay/id/$' , views.generate_code , name ='generateID') ,
 ]
 
 if settings.DEBUG:
