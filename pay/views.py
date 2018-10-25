@@ -51,7 +51,7 @@ def check_out(request):
 
 
 def pay_index(request):
-    return render(request,'pay_index.html')
+    return render(request,'pay/pay_index.html')
 
 
 def profile(request, user_username=None):
