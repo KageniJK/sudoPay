@@ -2,11 +2,7 @@ import africastalking as af
 from decouple import config, Csv
 
 # Initialize SDK
-
-# use 'sandbox' for development in the test environment
 username = config('AF_USERNAME')
-
-# use your sandbox app API key for development in the test environment
 api_key = config('AF_KEY')
 
 af.initialize(username, api_key)
@@ -23,8 +19,6 @@ def send_receipt( message , customer):
     print(response)
 
     # Or use it asynchronously
-
-
     def on_finish(error, response):
         if error is not None:
             raise error
@@ -36,6 +30,6 @@ def send_receipt( message , customer):
 if __name__ == '__main__':
 
     test_message = "your order is as follows: bla bla"
-    test_number = '254729309658'
+    test_number = '254728258626'
     
     send_receipt(test_message,test_number)

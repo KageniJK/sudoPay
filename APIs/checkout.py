@@ -3,12 +3,14 @@ from decouple import config, Csv
 
 # Initialize SDK
 # use 'sandbox' for development in the test environment
-# username = config('AF_USERNAME')
-# api_key = config('AF_KEY')
-username = 'sudopay'
-api_key = '5081377c43098290fd6dce414bf24af5ee2e0654bf0052ac8b6e4fb9ab77e8d5'
+username = config('AF_USERNAME')
+api_key = config('AF_KEY')
 
-africastalking.initialize('sudopay',api_key)
+sandname = config('SAND_USERNAME')
+sandkey = config('SAND_KEY')
+
+africastalking.initialize(sandname,sandkey)
+# africastalking.initialize(username, api_key)
 
 payment = africastalking.Payment
 
@@ -17,13 +19,13 @@ def mpesa_checkout():
         # Initiate the checkout. If successful, you will get back a transactionId
         # transactionId = africastalking.PaymentService.mobile_checkout(productName,phoneNumber,currencyCode,amount,metadata)
         res = payment.mobile_checkout(
-            product_name='testProduct', phone_number='+254729309658', currency_code='KES', amount=100.50, metadata={
-                "agentId": "",
+            product_name='testProduct', phone_number='+254729309658', currency_code='KES', amount=10, metadata={
+                "agentId": "654",
                 "productId": "3366"
             })
         
 
-        print ("The transactionId is " + res)
+        print ("The transactionId is " + str(res))
 
     except africastalking.Service.AfricasTalkingException as e:
         print("Received error response: %s" % str(e))
