@@ -17,6 +17,7 @@ class Goodie ( models.Model ):
     name = models.CharField(max_length=250)
     category = models.ForeignKey(Catalog)
     description = models.TextField()
+    price = models.PositiveIntegerField()
     catalog_date = models.DateField(auto_now=True)
 
     def __str__(self):

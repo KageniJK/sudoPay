@@ -19,9 +19,11 @@
                     <section class="card card-fluid">
                         <!-- .card-body -->
                         <div class="card-body text-center">
+                            {% if request.user.profile.profile_picture %}
                             <!-- .user-avatar -->
-                            <img class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
+                                <img class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
                             <!-- /.user-avatar -->
+                            {% endif %}
                             <h3 class="card-title text-truncate">
                                 <a href="user-profile.html"> {{ profile.user.firstname }} {{ profile.user.secondname }} </a>
                             </h3>
@@ -38,7 +40,7 @@
                                 <!-- .card -->
                                 <section class="card card-fluid">
                                     <!-- .card-body -->
-                                    <div class="card-body">
+                                    <div class="card-body card-mb-3">
                                         {% qr_from_text user_info size="M" %}
                                     </div>
                                     <!-- /.card-body -->
@@ -56,10 +58,6 @@
                                     <i class="fa fa-arrow-right ml-2"></i>
                                 </a>
                                 {% endif %}
-
-                                <a class="btn btn-primary circle" href="/generate/sudopay/id">
-                                    generate sudoID
-                                </a>
                             </p>
                         </div>
                         <!-- /.card-body -->

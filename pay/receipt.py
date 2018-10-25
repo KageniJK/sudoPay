@@ -24,7 +24,8 @@ def send_receipt(message, customer):
     def on_finish(error, response):
         if error is not None:
             raise error
-        print(response)
+        # print(response)
+        return response
 
     sms.send(message, ["+"+customer], callback=on_finish)
 

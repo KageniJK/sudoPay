@@ -6,24 +6,18 @@ from . import receipt
 from .forms import *
 
 
-def authenticate(request):
-    '''
-    User will now submit their auth ID so they can checkout
-    '''
-    
-    return redirect('shop')
-
-
 
 def check_out(request):
     '''
     once the checkout button has been pressed !
     '''
+    
 
-    test_message = "your order is as follows: bla bla"
-    test_number = '254729309658'
+    message = "your order is as follows: bla bla"
+    customer_number = '254729309658'
 
-    receipt.send_receipt(test_message,test_number)
+    receipt.send_receipt(message,customer_number)
+
     
     return redirect('shop')
 
@@ -37,14 +31,25 @@ def profile(request, user_username=None):
     Function view to a customer profile 
     '''
     profile = get_object_or_404(Profile, user__username=user_username)
-    bank_info = get_object_or_404(Account, user__username=user_username)
+
+    try:
+        bank_info = get_object_or_404(Account, owner__username=user_username)
+        bank_number = bank_info.card_number
+        expiry = bank_info.expiry_date
+    except:
+        bank_info = None
+        bank_number = 0000000000
+        expiry = '2/2/2020'
+
+
     customer = request.user.profile
 
     user_info = {
         'NAME': customer.user.username,
         'AVATAR': customer.profile_picture,
         'MOBILE': customer.phone_number,
-        'CARD_NO' : bank_info.card_number ,
+        'CARD_NO' :bank_number ,
+        'EXPIRY_DATE':expiry,
         'country': customer.country,
         'email': customer.user.email
     }
@@ -61,8 +66,8 @@ def update_profile(request):
     message = None
 
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST)
-        profile_form = ProfileUpdateForm(request.POST , request.FILES )
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST , request.FILES ,instance=request.user.profile)
         acc_form = AccountForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid() and acc_form.is_valid():
@@ -71,6 +76,7 @@ def update_profile(request):
             acc_info = acc_form.save(commit=False)
             user_info.save()
             profile_info.save()
+            acc_info.owner = request.user
             acc_info.save()
             message = f"{request.user.username}'s account updated successfully !"
 

@@ -20,7 +20,7 @@ class Account(models.Model):
     card_type = models.CharField(choices=ACCEPTED_CHOICES, max_length=100 )
     card_number = models.BigIntegerField()
     cvv = models.PositiveIntegerField()
-    password = models.CharField(max_length=20)
+    expiry_date = models.DateField(blank=True , null=True)
     owner = models.OneToOneField(User ,null=True ,blank=True)
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Profile(models.Model):
     '''
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
     profile_picture = models.ImageField(
-        upload_to='static/profile', default="https://i.imgur.com/oo1xyTr.jpg", blank=True)
+        upload_to='static/profile', blank=True)
     phone_number = models.PositiveIntegerField( blank=True,null=True )
     country = CountryField(blank_label='(select country)' , null=True , blank=True)
 
