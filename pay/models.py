@@ -17,12 +17,13 @@ class Account(models.Model):
         ("MEAL Card", "MEAL Card"),
     )
     card_type = models.CharField(choices=ACCEPTED_CHOICES, max_length=100 )
-    card_number = models.PositiveIntegerField()
+    card_number = models.BigIntegerField()
     cvv = models.PositiveIntegerField()
-    password = models.TextField()
-    owner = models.OneToOneField(User)
+    password = models.CharField(max_length=20)
+    owner = models.OneToOneField(User ,null=True ,blank=True)
 
-
+    def __str__(self):
+        return f"{self.owner.username}'s Acc"
 
 class Profile(models.Model):
     '''

@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from .generate_qr import generate_code
 
-import receipt
+from . import receipt
 from .forms import *
 
 

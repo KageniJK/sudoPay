@@ -190,3 +190,51 @@ header a:hover{
     margin: 5px 0 0 0;
     font-size: 14px;
 }
+
+/* put your own styles to customize and override the theme */
+  
+    .two {
+      position: relative;
+      width: 100%;
+    }
+
+    .top {
+      width: 50%;
+      position: absolute;
+      top: 12%;
+      margin-left: 30%;
+    }
+
+    small ul,
+    small.form-text {
+      display: none;
+    }
+
+    .signUp {
+      font-family: 'Charmonman', cursive;
+    }
+
+    .register {
+      margin-top: 10%;
+    }
+
+    label {
+      display: none;
+    }
+
+    .img-fluid {
+      padding-left: 20%;
+    }
+
+
+
+
+
+    /* .dark-primary-color    { background: #512DA8; }
+.default-primary-color { background: #673AB7; }
+.light-primary-color   { background: #D1C4E9; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #009688; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; } */

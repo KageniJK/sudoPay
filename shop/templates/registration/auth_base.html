@@ -1,0 +1,51 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Sign In | Hood360  </title>
+    <meta name="theme-color" content="#3063A0">
+
+    <!-- BEGIN BASE STYLES -->
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="/static/vendor/fontawesome/css/fontawesome.all.css">
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
+    {% endblock %}
+    <!-- END THEME STYLES -->
+
+</head>
+
+<body>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- BEGIN PLUGINS JS -->
+    {% block scripts %}
+        <script src="/static/vendor/bootstrap/js/bootstrap.min.js" ></script>
+        <script src="/static/vendor/particles.js/particles.min.js"></script>
+        <script>
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            particlesJS.load('announcement', 'assets/javascript/particles.json');
+        </script>
+    {% endblock %}
+    <!-- END PLUGINS JS -->
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-116692175-1');
+    </script>
+
+</body>
+
+</html>

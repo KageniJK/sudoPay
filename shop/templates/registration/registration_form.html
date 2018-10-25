@@ -1,0 +1,48 @@
+{% extends 'registration/auth_base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{block.super}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!-- .auth -->
+            <main class="auth">
+                <header id="auth-header" class="auth-header" style="background-image: url(assets/images/illustration/img-1.png);">
+                    <h1>
+                        <img src="assets/images/brand-inverse.png" alt="" height="72">
+                        <span class="sr-only">Sign Up</span>
+                    </h1>
+                    <p> Already have an account? please
+                        <a href="/accounts/login">Sign In</a>
+                    </p>
+                </header>
+                <!-- form -->
+                <form method="post" action="/accounts/register/" class="auth-form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+
+                    <!-- .form-group -->
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    </div>
+                    <!-- /.form-group -->
+
+
+                    <!-- recovery links -->
+                    <p class="text-center text-muted mb-0"> By creating an account you agree to the
+                        <a href="#">Terms of Use</a> and
+                        <a href="#">Privacy Policy</a>. </p>
+                    <!-- /recovery links -->
+                </form>
+                <!-- /.auth-form -->
+                <!-- copyright -->
+                <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>
+            </main>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+{% endblock %}

@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    url(r'^/shop' , views.pay_index , name='pay_index') ,
+    url(r'^sudopay/$' , views.pay_index , name='pay_index') ,
     url(r'^member/(?P<user_username>\w+)/$', views.profile, name='userprofile'),
 ]
 

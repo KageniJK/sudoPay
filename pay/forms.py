@@ -11,8 +11,7 @@ class UserUpdateForm (forms.ModelForm):
 class ProfileUpdateForm (forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['profile_picture', 'neighborhood', 'about']
-        exclude =['qr_id']
+        exclude =['qr_id','user']
 
 
 class AccountForm (forms.ModelForm ):
