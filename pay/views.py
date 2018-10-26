@@ -2,24 +2,49 @@ from django.shortcuts import render , redirect , get_object_or_404
 from .generate_qr import generate_code
 from qr_code.qrcode.utils import QRCodeOptions
 
-from . import receipt
+from . import receipt , checkout
 from .forms import *
 
+from shop import models as md
 
 
-def check_out(request):
+def check_out(request ,product_id):
     '''
     once the checkout button has been pressed !
     '''
-    
+    customer = get_object_or_404(Profile,user=request.user)
+    product = get_object_or_404( md.Goodie , pk=product_id )
 
-    message = "your order is as follows: bla bla"
-    customer_number = '254729309658'
+    data = {
+        'pn' : 'testProduct', 
+        'phn': '+254'+str(customer.phone_number),
+        'cc' : 'KES', 
+        'am' : product.price, 
+        'md' : {
+            "ad": "654",
+            "pd": "3366"
+        }
+    }
+
+    ck = checkout.mpesa_checkout(data)
+    print(ck)
+
+    message = " Dear "+customer.user.username.upper()+", your package "+product.name+" packageID: "+str(data['md']['pd'])+" KES:"+str(data['am'])+" ,has been processed ! Kindly , authorize cashout ."
+    customer_number = '254'+str(customer.phone_number)
 
     receipt.send_receipt(message,customer_number)
-
     
-    return redirect('shop')
+    context={
+        'checkout' : ck ,
+        'receipt' : message ,
+        'product' : product ,
+        'amount': data['cc']
+    }
+    
+    return render( request , 'pay/confirmation.html' ,context )
+
+
+
 
 
 def pay_index(request):
@@ -45,11 +70,11 @@ def profile(request, user_username=None):
     customer = request.user.profile
 
     user_info = {
-        'NAME': customer.user.username,
-        'AVATAR': customer.profile_picture,
+        'name': customer.user.username,
+        'image': customer.profile_picture,
         'MOBILE': customer.phone_number,
         'CARD_NO' :bank_number ,
-        'EXPIRY_DATE':expiry,
+        'expiry_date':expiry,
         'country': customer.country,
         'email': customer.user.email
     }

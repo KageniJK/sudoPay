@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <!-- .unused div -->
+        <div class="col-md-3"></div>
+        <!-- ./unused div -->
+
+        <!-- .show the receipt -->
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block"> sudopay  </button>
+            {% if checkout %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong> Transaction {{ checkout.transactionId }} </strong> successful ! <br>
+                    status : <strong> {{ checkout.description }} </strong>
+
+                </div>
+            {% endif %}
+
+            {% if message %}
+                <div class="alert alert-dismissible alert-primary">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong> SUDOPAY </strong> {{ message }}
+                </div>
+            {% endif %}
+            <hr>
+            {% if receipt %}
+            <button type="button" class="btn btn-primary btn-lg btn-block"> YOUR CART </button>
+            <strong> PRODUCT </strong> <br>
+
+            ================================= <br>
+           
+            TOTAL : <strong> {{ amount }} : {{product.price}} </strong>
+            {% endif %}
+    
+        </div>
+        <!-- ./end of show the receipt -->
+
+        <!-- .unused div -->
+        <div class="col-md-3"></div>
+        <!-- ./unused div -->
+    </div>
+</div>
+{% endblock %}
