@@ -14,7 +14,7 @@
             {% if checkout %}
                 <div class="alert alert-dismissible alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong> Transaction {{ checkout.transactionId }} </strong> successful ! <br>
+                    <strong> Transaction {{ checkout.transactionId }} </strong> successful !
                     status : <strong> {{ checkout.description }} </strong>
 
                 </div>
@@ -23,17 +23,24 @@
             {% if message %}
                 <div class="alert alert-dismissible alert-primary">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong> SUDOPAY </strong> {{ message }}
+                    <strong> SUDOPAY </strong> {{ receipt }}
                 </div>
             {% endif %}
             <hr>
             {% if receipt %}
-            <button type="button" class="btn btn-primary btn-lg btn-block"> YOUR CART </button>
-            <strong> PRODUCT </strong> <br>
-
-            ================================= <br>
-           
-            TOTAL : <strong> {{ amount }} : {{product.price}} </strong>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        YOUR CART
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        1. {{ product.name }} <br>
+                        <hr>
+                        {{product.description}}
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        TOTAL : <strong> {{ amount }} : {{product.price}} </strong>
+                    </a>
+            </div>
             {% endif %}
     
         </div>

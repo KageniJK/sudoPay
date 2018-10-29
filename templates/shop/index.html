@@ -6,14 +6,35 @@
 
 <div class="container">
     <div class="row">
-        shop today
+        {% if products %}
+        {% for product in products %}
+        <div class="col-md-3">
+            <div class="card mb-3">
+                <h3 class="card-header">{{product.name|upper}}</h3>
+                <img style="height:auto; width: 100%; display: block;" src="{{ product.picture.url }}" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{product.description}}
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item ">
+                        <a class="list-group-item list-group-item-action active" href="/sudopay/checkout/{{ product.id }}"> checkout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
 
-        <hr>
-
-        <button>
-            <a href="/sudopay/checkout/1"> checkout </a>
-        </button>
     </div>
+
+    <!-- <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div> -->
+
+
+</div>
 </div>
 
 

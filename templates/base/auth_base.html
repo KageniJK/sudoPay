@@ -6,14 +6,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> Sign In | Hood360  </title>
-    <meta name="theme-color" content="#3063A0">
+    <title> Sign In | sudoPay  </title>
 
     <!-- BEGIN BASE STYLES -->
     {% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="/static/vendor/fontawesome/css/fontawesome.all.css">
-    <link rel="stylesheet" href="/static/stylesheets/main.css">
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/lux/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/stylesheets/main.css">
     {% endblock %}
     <!-- END THEME STYLES -->
 
@@ -22,29 +22,17 @@
 <body>
 
     {% block content %}
+    {% include 'base/navbar.html' %}
 
     {% endblock %}
 
-    <!-- BEGIN PLUGINS JS -->
+
+
     {% block scripts %}
-        <script src="/static/vendor/bootstrap/js/bootstrap.min.js" ></script>
-        <script src="/static/vendor/particles.js/particles.min.js"></script>
-        <script>
-            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-            particlesJS.load('announcement', 'assets/javascript/particles.json');
-        </script>
+        {% bootstrap_javascript %}
+        <script src="/static/javascript/script.js" ></script>
     {% endblock %}
-    <!-- END PLUGINS JS -->
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-116692175-1');
-    </script>
 
 </body>
 

@@ -22,14 +22,14 @@ def check_out(request ,product_id):
         'am' : product.price, 
         'md' : {
             "ad": "654",
-            "pd": "3366"
+            "pd": "MK1144K"
         }
     }
 
     ck = checkout.mpesa_checkout(data)
     print(ck)
 
-    message = " Dear "+customer.user.username.upper()+", your package "+product.name+" packageID: "+str(data['md']['pd'])+" KES:"+str(data['am'])+" ,has been processed ! Kindly , authorize cashout ."
+    message = "Dear "+customer.user.username.upper()+", your package "+product.name+" packageID: "+str(data['md']['pd'])+" KES:"+str(data['am'])+" ,has been processed ! Kindly , authorize cashout ."
     customer_number = '254'+str(customer.phone_number)
 
     receipt.send_receipt(message,customer_number)
@@ -93,7 +93,10 @@ def update_profile(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST , request.FILES ,instance=request.user.profile)
-        acc_form = AccountForm(request.POST)
+        try:
+            acc_form = AccountForm(request.POST,instance=request.user.account)
+        except:
+            acc_form = AccountForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid() and acc_form.is_valid():
             user_info = user_form.save(commit=False)
@@ -103,13 +106,16 @@ def update_profile(request):
             profile_info.save()
             acc_info.owner = request.user
             acc_info.save()
-            message = f"{request.user.username}'s account updated successfully !"
+            message = f"{request.user.username}'s: account updated successfully !"
 
             return redirect('userprofile', request.user.username)
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
-        acc_form = AccountForm()
+        try:
+            acc_form = AccountForm(instance=request.user.account)
+        except:
+            acc_form = AccountForm()
     
     context = {
         'user_form': user_form,

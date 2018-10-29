@@ -6,69 +6,65 @@
 {% block content %}
 {{block.super}}
 
-<div class="wrapper">
-    <div class="page">
-        <div class="page-inner">
-            <div class="page-section row ">
+<div class="container">
+    <div class="page-section row ">
 
-                <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
 
-                <!-- .masonry-item -->
-                <div class="masonry-item col-md-8 ">
-                    <!-- .card -->
-                    <section class="card card-fluid">
-                        <!-- .card-body -->
-                        <div class="card-body text-center">
-                            {% if request.user.profile.profile_picture %}
-                            <!-- .user-avatar -->
-                                <img class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
-                            <!-- /.user-avatar -->
-                            {% endif %}
-                            <h3 class="card-title text-truncate">
-                                <a href="user-profile.html"> {{ profile.user.firstname }} {{ profile.user.secondname }} </a>
-                            </h3>
+        <!-- .masonry-item -->
+        <div class="col-md-8 ">
+            <!-- .card -->
+            <section class="card card-fluid">
+                <!-- .card-body -->
+                <div class="card-body text-center">
+                    {% if request.user.profile.profile_picture %}
+                    <!-- .user-avatar -->
+                    <img width="30%" height="auto" class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
+                    <!-- /.user-avatar -->
+                    {% endif %}
+                    <h3 class="card-title text-truncate">
+                        <a href="user-profile.html"> {{ profile.user.firstname }} {{ profile.user.secondname }} </a>
+                    </h3>
 
-                            <h3 class="card-subtitle text-muted mb-3">
-                                <a href="">
-                                    {{ profile.neighborhood.name }}
-                                </a>
-                                
-                            </h3>
-                            <h6 class="card-subtitle text-muted mb-3"> @ {{ profile.user.username }} </h6>
-                            <!-- .skills -->
-                            <p class="skills">
-                                <!-- .card -->
-                                <section class="card card-fluid">
-                                    <!-- .card-body -->
-                                    <div class="card-body card-mb-3">
-                                        {% qr_from_text user_info size="M" %}
-                                    </div>
-                                    <!-- /.card-body -->
-                                </section>
-                                <!-- /.card -->
-                            </p>
-                            <!-- /.skills -->
-                            <p class="text-muted">
-                                {{ profile.about }}
-                            </p>
-                            <p>
-                                {% if profile.user == request.user %}
-                                <a href="/account/edit" class="btn btn-primary circle">
-                                    Edit account
-                                    <i class="fa fa-arrow-right ml-2"></i>
-                                </a>
-                                {% endif %}
-                            </p>
-                        </div>
-                        <!-- /.card-body -->
-                    </section>
-                    <!-- /.card -->
+                    <h3 class="card-subtitle text-muted mb-3">
+                        <a href="">
+                            {{ profile.neighborhood.name }}
+                        </a>
+
+                    </h3>
+                    <h6 class="card-subtitle text-muted mb-3"> @ {{ profile.user.username }} </h6>
+                    <!-- .skills -->
+                    <p class="skills">
+                        <!-- .card -->
+                        <section class="card card-fluid">
+                            <!-- .card-body -->
+                            <div class="card-body card-mb-3">
+                                {% qr_from_text user_info size="M" %}
+                            </div>
+                            <!-- /.card-body -->
+                        </section>
+                        <!-- /.card -->
+                    </p>
+                    <!-- /.skills -->
+                    <p class="text-muted">
+                        {{ profile.about }}
+                    </p>
+                    <p>
+                        {% if profile.user == request.user %}
+                        <a href="/account/edit" class="btn btn-primary circle">
+                            Edit account
+                            <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                        {% endif %}
+                    </p>
                 </div>
-                <!-- /.masonry-item -->
-
-                <div class="col-md-2"></div>
-            </div>
+                <!-- /.card-body -->
+            </section>
+            <!-- /.card -->
         </div>
+        <!-- /.masonry-item -->
+
+        <div class="col-md-2"></div>
     </div>
 </div>
 

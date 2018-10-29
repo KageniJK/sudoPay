@@ -1,8 +1,16 @@
 from django.shortcuts import render
-
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Goodie
 
 def index(request):
+    try:
+        products = Goodie.objects.all()
+    except ObjectDoesNotExist as e :
+        print(e)
 
-    return render(request,'shop/index.html')
+    context = {
+        'products' : products
+    }
+    return render(request,'shop/index.html' ,context )
 
 

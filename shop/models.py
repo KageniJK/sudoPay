@@ -15,6 +15,7 @@ class Goodie ( models.Model ):
     Basically this is Shop Items Model
     '''
     name = models.CharField(max_length=250)
+    picture = models.ImageField(upload_to='static/shop',blank=True)
     category = models.ForeignKey(Catalog)
     description = models.TextField()
     price = models.PositiveIntegerField()

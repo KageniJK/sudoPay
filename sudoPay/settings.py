@@ -144,5 +144,5 @@ django_heroku.settings(locals())
 
 
 #  OTHER SETTINGS
-# LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
 # LOGOUT_REDIRECT_URL = '/accounts/login'
