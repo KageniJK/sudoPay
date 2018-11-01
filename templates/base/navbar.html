@@ -14,7 +14,7 @@
         {% if request.user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-shopping-cart"></i> cart </a>
+                <a class="nav-link" href="/cart/"> <i class="fa fa-shopping-cart"></i> cart </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/member/{{request.user.username}}"> <i class="fa fa-user"></i> profile </a>
@@ -32,3 +32,5 @@
         {% endif %}
     </div>
 </nav>
+<br>
+<br>

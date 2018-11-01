@@ -30,7 +30,7 @@ def check_out(request ,product_id):
     print(ck)
 
     message = "Dear "+customer.user.username.upper()+", your package "+product.name+" packageID: "+str(data['md']['pd'])+" KES:"+str(data['am'])+" ,has been processed ! Kindly , authorize cashout ."
-    customer_number = '254'+str(customer.phone_number)
+    customer_number = '+254'+str(customer.phone_number)
 
     receipt.send_receipt(message,customer_number)
     

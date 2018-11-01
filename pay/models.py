@@ -16,6 +16,7 @@ class Account(models.Model):
         ("MasterCard", "MasterCard"),
         ("American Express", "American Express"),
         ("MEAL Card", "MEAL Card"),
+        ("M-Pesa", "M-Pesa"),
     )
     card_type = models.CharField(choices=ACCEPTED_CHOICES, max_length=100 )
     card_number = models.BigIntegerField()
