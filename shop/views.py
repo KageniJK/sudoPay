@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Goodie
+from .models import Goodie,Catalog
 
 def index(request):
     try:
@@ -12,5 +12,8 @@ def index(request):
         'products' : products
     }
     return render(request,'shop/index.html' ,context )
+
+
+
 
 
