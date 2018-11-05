@@ -7,15 +7,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <main class="auth">
-                <header style="background:black; padding:6%;" class="lead"">
-                    <h1 class="lead" >
-                        <span  class="sr-only">Sign In</span>
-                    </h1>
-                    <p> Don't have a account?
-                        <a class="" href="/accounts/register"> Sign Up </a>
-                    </p>
-                </header>
-                <!-- form -->
+            <hr>
                 <form action="/accounts/login/" class="auth-form" method="POST">
                     {% csrf_token %}
                     {% bootstrap_form form %}
@@ -23,20 +15,24 @@
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
                     </div>
-                    <!-- /.form-group -->
-            
-                    <!-- recovery links -->
-                    <div class="text-center pt-3">
-                        <a href="#" class="link">Forgot Username?</a>
-                        <span class="mx-2">·</span>
-                        <a href="#" class="link">Forgot Password?</a>
+                    <small>Create an account <a style="color:blue" href="/accounts/register">Sign Up</a></small>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a style="font-size:15px;" href="#" >Forgot Username?</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a style="font-size:15px;" href="#" >Forgot Password?</a>
+                        </div>
                     </div>
-                    <!-- /recovery links -->
+                    <!-- <div class="text-center pt-3">
+                        
+                        <span class="mx-2">·</span>
+                        
+                    </div> -->
+                    
                 </form>
-                <!-- /.auth-form -->
-            
-                <!-- copyright -->
-                <footer class="auth-footer"> © 2018 All Rights Reserved.
+            <hr>
+                <footer style="font-size:15px;" class="auth-footer"> © 2018 All Rights Reserved. <br>
                     <a href="#">Privacy</a> and
                     <a href="#">Terms</a>
                 </footer>

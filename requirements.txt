@@ -8,8 +8,10 @@ dj-database-url==0.5.0
 Django==1.11
 django-bootstrap4==0.0.7
 django-braces==1.13.0
+django-countries==5.3.2
 django-heroku==0.3.1
 django-model-utils==3.1.2
+django-qr-code==1.0.0
 django-registration==2.4.1
 gunicorn==19.9.0
 idna==2.7

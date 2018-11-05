@@ -8,36 +8,30 @@
         <div class="col-md-6">
             <!-- .auth -->
             <main class="auth">
-                <header id="auth-header" class="auth-header" style="background-image: url(assets/images/illustration/img-1.png);">
-                    <h1>
-                        <img src="assets/images/brand-inverse.png" alt="" height="72">
-                        <span class="sr-only">Sign Up</span>
-                    </h1>
-                    <p> Already have an account? please
-                        <a href="/accounts/login">Sign In</a>
-                    </p>
-                </header>
-                <!-- form -->
-                <form method="post" action="/accounts/register/" class="auth-form">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
+                <hr>
+                            <form method="post" action="/accounts/register/" class="auth-form">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+            
+                                <!-- .form-group -->
+                                <script src='https://www.google.com/recaptcha/api.js'></script>
+                                <div class="g-recaptcha" data-sitekey="6LeZDXgUAAAAAMbOfp6YUiNxe85-10evix1XEBas"></div>
+                                <div class="">
+                                    <button class="btn btn btn-info btn-inline" type="submit">Sign Up</button>
+                                </div>
+                                
+                                <small style="color:rgb(13, 14, 15);">Already have an account? <a style="color:rgb(2, 27, 255);" href="/accounts/login/">Log in</a></small> <br>
+                                <hr>
+                              
+                                <small style="color:rgb(216, 229, 240); font-size:10px;" class="text-center text-muted mb-0"> By creating an account you agree to the
+                                    <a href="#">Terms of Use</a> and
+                                    <a href="#">Privacy Policy</a>. <br>
+                                    © 2018 All Rights Reserved. </small>
 
-                    <!-- .form-group -->
-                    <div class="form-group">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                                <!-- /recovery links -->
+                            </form>
                     </div>
-                    <!-- /.form-group -->
-
-
-                    <!-- recovery links -->
-                    <p class="text-center text-muted mb-0"> By creating an account you agree to the
-                        <a href="#">Terms of Use</a> and
-                        <a href="#">Privacy Policy</a>. </p>
-                    <!-- /recovery links -->
-                </form>
-                <!-- /.auth-form -->
-                <!-- copyright -->
-                <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>
+                </div>
             </main>
 
         </div>
