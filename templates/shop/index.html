@@ -4,22 +4,24 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">
+<div class="container" style="padding-top:30px;">
     <div class="row">
         {% if products %}
         {% for product in products %}
         <div class="col-md-3">
             <div class="card mb-3">
+                <!-- <legend>{{product.category.quantity}}</legend> -->
                 <h3 class="card-header">{{product.name|upper}}</h3>
                 <img style="height:auto; width: 100%; display: block;" src="{{ product.picture.url }}" alt="Card image">
                 <div class="card-body">
                     <p class="card-text">
                         {{product.description}}
-                    </p>
+                    </p><button class="btn-success">{{product.category.quantity}}</button> Availabe for order
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item ">
-                        <a class="list-group-item list-group-item-action active" href="/sudopay/checkout/{{ product.id }}"> checkout </a>
+                        <a class="list-group-item list-group-item-action active" href="/sudopay/checkout/{{ product.id }}">
+                            checkout </a>
                     </li>
                 </ul>
             </div>
