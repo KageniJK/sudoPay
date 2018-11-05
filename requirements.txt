@@ -1,9 +1,14 @@
+confusable-homoglyphs==3.2.0
 dj-database-url==0.5.0
 Django==1.11
+django-bootstrap4==0.0.7
+django-countries==5.3.2
 django-crispy-forms==1.7.2
 django-heroku==0.3.1
 django-qr-code==1.0.0
+django-registration==3.0
 psycopg2==2.7.5
+python-decouple==3.1
 pytz==2018.7
 qrcode==6.0
 six==1.11.0
