@@ -31,7 +31,7 @@ class Profile(models.Model):
     '''
     Profile of an customer . More Information .
     '''
-    user = models.OneToOneField(User,  on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     profile_picture = models.ImageField(
         upload_to='static/profile', blank=True)
     phone_number = models.PositiveIntegerField( blank=True,null=True )

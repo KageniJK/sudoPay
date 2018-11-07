@@ -5,6 +5,7 @@
 {{block.super}}
 
 <div class="container">
+    {% if request.user.profile.phone_number  %}
     <div class="row">
         {% if products %}
         {% for product in products %}
@@ -26,7 +27,7 @@
                             {%csrf_token%}
                         
                             {% bootstrap_form Cartform %}
-                            <input type="submit" class="btn btn-outline-success" value="Add comment">
+                            <input type="submit" class="btn btn-outline-success" value="Add To Cart">
                         </form>
                 
                     </li>
@@ -44,6 +45,11 @@
 
 
 </div>
+{% else %}
+<div class="alert alert-danger ">
+    Please Create Update Your Profile To Start Shopping 
+</div>
+{% endif %}
 </div>
 
 

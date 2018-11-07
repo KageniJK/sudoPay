@@ -8,6 +8,9 @@ dj-database-url==0.5.0
 Django==1.11
 django-bootstrap4==0.0.7
 django-braces==1.13.0
+numpy==1.15.4
+opencv-contrib-python==3.4.3.18
+opencv-python==3.4.3.18
 django-heroku==0.3.1
 django-model-utils==3.1.2
 django-registration==2.4.1
