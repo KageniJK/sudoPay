@@ -1,12 +1,11 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from .generate_qr import generate_code
 from qr_code.qrcode.utils import QRCodeOptions
-
 from . import receipt , checkout
 from .forms import *
-
+from decouple import config, Csv
 from shop import models as md
-
+import africastalking
 
 def check_out(request ,product_id):
     '''
@@ -28,7 +27,7 @@ def check_out(request ,product_id):
 
     ck = checkout.mpesa_checkout(data)
     print(ck)
-
+    
     message = "Dear "+customer.user.username.upper()+", your package "+product.name+" packageID: "+str(data['md']['pd'])+" KES:"+str(data['am'])+" ,has been processed ! Kindly , authorize cashout ."
     customer_number = '+254'+str(customer.phone_number)
 
@@ -52,9 +51,11 @@ def pay_index(request):
 
 
 def profile(request, user_username=None):
+
     '''
     Function view to a customer profile 
     '''
+
     profile = get_object_or_404(Profile, user__username=user_username)
 
     try:
@@ -124,3 +125,5 @@ def update_profile(request):
         'message': message
     }
     return render(request, 'profile/edit_profile.html', context)
+
+
