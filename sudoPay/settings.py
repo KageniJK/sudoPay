@@ -40,10 +40,6 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LeZDXgUAAAAAMeB9J80eC17GGwjxdQQbmaj7w__'
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',

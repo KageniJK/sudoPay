@@ -7,7 +7,15 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <main class="auth">
-            <hr>
+                <header style="background:black; padding:6%;" class="lead"">
+                    <h1 class="lead" >
+                        <span  class="sr-only">Sign In</span>
+                    </h1>
+                    <p> Don't have a account?
+                        <a class="" href="/sign/"> Sign Up </a>
+                    </p>
+                </header>
+                <!-- form -->
                 <form action="/accounts/login/" class="auth-form" method="POST">
                     {% csrf_token %}
                     {% bootstrap_form form %}
@@ -25,11 +33,11 @@
                         </div>
                     </div>
                     <!-- <div class="text-center pt-3">
-                        
+
                         <span class="mx-2">·</span>
-                        
+
                     </div> -->
-                    
+
                 </form>
             <hr>
                 <footer style="font-size:15px;" class="auth-footer"> © 2018 All Rights Reserved. <br>
