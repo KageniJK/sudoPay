@@ -46,6 +46,14 @@ class Goodie ( models.Model ):
         goodie = cls.objects.get(pk=id)
         return goodie
 
+
+    def current_stock(self):
+        products = Goodie.objects.filter(goodie=self)
+        total_products = 0
+        for goods in goodie:
+            total_goodie += goodie.quantity
+        return self.goodie - total_goodie
+
     
     def __str__(self):
         return self.name

@@ -48,11 +48,3 @@ def stock(request,category_id):
         pass
 
 
-def current_stock(self):
-    products = Goodie.objects.filter(goodie=self)
-    total_products = 0
-    for goods in goodie:
-        total_goodie += goodie.quantity
-    return self.goodie - total_goodie
-
-
