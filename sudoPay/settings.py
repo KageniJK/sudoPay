@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'pay.apps.PayConfig' ,
     'shop.apps.ShopConfig',
     'qr_code'
+    
+
 ]
 
 MIDDLEWARE = [
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
