@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from multiprocessing import Process
 from django.http import HttpResponse, Http404
-from .models import Goodie,Category, Quantity, Cart
+from .models import Goodie,Category, Cart
 from django.views.generic import TemplateView
 
 
