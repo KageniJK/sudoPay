@@ -117,7 +117,6 @@ def stock(request,category_id):
     else:
         pass
 
-
 # def current_stock(request,category_id):
 #     if request.user.is_authenticated:
 #         if  Goodie.objects.filter(category_id=category_id)
@@ -180,20 +179,3 @@ def stock(request,category_id):
 #         return HttpResponse('You are running out of stock for this category please re-stock')
 #     else:
 #         pass
-
-
-
-  
-
-
-    
-
-    
-
-
-
-
-
-
-
-

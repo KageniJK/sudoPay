@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Category(models.Model):
     '''
     Items category
@@ -11,6 +12,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Goodie ( models.Model ):
     '''
@@ -24,9 +26,7 @@ class Goodie ( models.Model ):
     price = models.PositiveIntegerField()
     catalog_date = models.DateField(auto_now=True)
 
-   
-
-    def add_goodie(self):
+   def add_goodie(self):
         '''
         Add an item to shelf
         '''
@@ -44,6 +44,13 @@ class Goodie ( models.Model ):
     def get_goodie_by_id(cls, id):
         goodie = cls.objects.get(pk=id)
         return goodie
+
+    def current_stock(self):
+        products = Goodie.objects.filter(goodie=self)
+        total_products = 0
+        for goods in goodie:
+            total_goodie += goodie.quantity
+        return self.goodie - total_goodie
 
     def __str__(self):
         return self.name
