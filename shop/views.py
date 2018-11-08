@@ -6,6 +6,7 @@ from .camigo.camigo import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from multiprocessing import Process
+import time
 
 
 def signup(request):
@@ -54,19 +55,14 @@ def cart(request):
     
 def add_to_cart(request,id):
     if request.method == 'POST':
+        Cartform = CartForm(request.POST)
         goodie = Goodie.objects.get(id=id)
-        buyer = armSystem()
-        print(buyer)
-        # buyer='x'
-        if buyer:
-            user = User.objects.get(username=buyer)
-            Cartform = CartForm(request.POST)
-            if Cartform.is_valid():
-                form = Cartform.save(commit=False)
-                form.user = request.user
-                form.item = goodie
-                form.save()
-                return redirect ('cart')
+        if Cartform.is_valid():
+            form = Cartform.save(commit=False)
+            form.user = request.user
+            form.item = goodie
+            form.save()
+            return redirect ('cart')
         print('error')
     print('x')
 
@@ -83,26 +79,17 @@ def image(request):
     print('error')
     # setUpFace(request.user.username)
     # trainSystem(setUpFace(request.user.username))
-    armSystem()
+    x = armSystem()
+    print(x)
     return redirect('index')
+   
 
-    
+def waiter():
+    while True:
+        # print('rada')
+        armSystem()
+        # print('rada')
+        continue
 
+Process(target=waiter).start()
 
-
-
-
-
-
-
-# def waiter():
-
-#     while True:
-#         print('rada')
-#         watcher = watcher(imageRoot, cascade)
-#         watcher.watch()
-#         # pass
-#         print('rada')
-#         continue
-
-# Process(target=waiter).start()
