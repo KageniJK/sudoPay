@@ -26,7 +26,7 @@ class Goodie ( models.Model ):
     price = models.PositiveIntegerField()
     catalog_date = models.DateField(auto_now=True)
 
-   def add_goodie(self):
+    def add_goodie(self):
         '''
         Add an item to shelf
         '''
