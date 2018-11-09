@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import CartForm,SignUpForm
+from .forms import CartForm,SignUpForm,UserUpdateForm,ProfileUpdateForm,AccountForm
 from .camigo.camigo import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from multiprocessing import Process
 
 from django.http import HttpResponse, Http404
-from .models import Goodie,Category, Cart,Profile
+from .models import Goodie,Category, Cart,Profile,Account
 
 from django.views.generic import TemplateView
 
@@ -36,13 +36,13 @@ def signup(request):
     return render(request,'registration/registration.html',{"form":form})
 
 
-def profile(request, user_username=None):
+def profile(request):
 
     '''
     Function view to a customer profile 
     '''
 
-    profile = get_object_or_404(Profile, user__username=user_username)
+    # profile = get_object_or_404(Profile, user__username=user_username)
 
     try:
         bank_info = get_object_or_404(Account, owner__username=user_username)
@@ -95,7 +95,7 @@ def update_profile(request):
             acc_info.save()
             message = f"{request.user.username}'s: account updated successfully !"
 
-            return redirect('userprofile', request.user.username)
+            return redirect('userprofile')
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
@@ -262,12 +262,13 @@ def stock(request,category_id):
 #         return HttpResponse('You are running out of stock for this category please re-stock')
 #     else:
 #         pass
-def waiter():
-    while True:
-        # print('rada')
-        armSystem()
-        # print('rada')
-        continue
 
-Process(target=waiter).start()
+# def waiter():
+#     while True:
+#         # print('rada')
+#         armSystem()
+#         # print('rada')
+#         continue
+
+# Process(target=waiter).start()
 

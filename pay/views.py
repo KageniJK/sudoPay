@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .generate_qr import generate_code
 from qr_code.qrcode.utils import QRCodeOptions
 from . import receipt , checkout
-from .forms import *
 from decouple import config, Csv
 from shop import models as md
 

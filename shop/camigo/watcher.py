@@ -20,7 +20,7 @@ class watcher:
         recognizer.read('shop/camigo/trainer.yml')
 
         print ('loading recognizer and capturing video')
-        cap = cv2.VideoCapture(0)        
+        cap = cv2.VideoCapture(1)        
     
         while True:
             # Capture frame-by-frame

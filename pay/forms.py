@@ -10,8 +10,3 @@ class UserUpdateForm (forms.ModelForm):
 
 
 
-
-class AccountForm (forms.ModelForm ):
-    class Meta:
-        model = Account
-        exclude = [ 'owner' ]

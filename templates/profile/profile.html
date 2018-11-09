@@ -19,11 +19,11 @@
                 <div class="card-body text-center">
                     {% if request.user.profile.profile_picture %}
                     <!-- .user-avatar -->
-                    <img width="30%" height="auto" class="user-avatar user-avatar-xxl my-3" src="{{ profile.profile_picture.url }}" alt="">
+                    <img width="30%" height="auto" class="user-avatar user-avatar-xxl my-3" src="{{ request.user.profile.profile_picture.url }}" alt="">
                     <!-- /.user-avatar -->
                     {% endif %}
                     <h3 class="card-title text-truncate">
-                        <a href="user-profile.html"> {{ profile.user.firstname }} {{ profile.user.secondname }} </a>
+                        <a href="user-profile.html"> {{ request.user.firstname }} {{ request.user.secondname }} </a>
                     </h3>
 
                     <h3 class="card-subtitle text-muted mb-3">
@@ -32,7 +32,7 @@
                         </a>
 
                     </h3>
-                    <h6 class="card-subtitle text-muted mb-3"> @ {{ profile.user.username }} </h6>
+                    <h6 class="card-subtitle text-muted mb-3"> @ {{ request.user.username }} </h6>
                     <!-- .skills -->
                     <p class="skills">
                         <!-- .card -->
@@ -50,12 +50,12 @@
                         {{ profile.about }}
                     </p>
                     <p>
-                        {% if profile.user == request.user %}
+                      
                         <a href="/account/edit" class="btn btn-primary circle">
                             Update Profile
                             <i class="fa fa-arrow-right ml-2"></i>
                         </a>
-                        {% endif %}
+                        
                     </p>
                 </div>
                 <!-- /.card-body -->
