@@ -20,8 +20,9 @@ class Goodie ( models.Model ):
     '''
     name = models.CharField(max_length=250)
     picture = models.ImageField(upload_to='static/shop',null=True, blank=True, default=0)
-    category = models.ForeignKey(Category)
+    # category = models.ForeignKey(Category)
     quantity = models.PositiveIntegerField()
+    barcode = models.ImageField(upload_to='static/barcodes', default=0)
     description = models.TextField()
     price = models.PositiveIntegerField()
     catalog_date = models.DateField(auto_now=True)
