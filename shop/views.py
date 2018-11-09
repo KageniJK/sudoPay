@@ -5,10 +5,14 @@ from .camigo.camigo import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from multiprocessing import Process
+
 from django.http import HttpResponse, Http404
 from .models import Goodie,Category, Cart,Profile
 
 from django.views.generic import TemplateView
+
+import time
+
 
 
 def signup(request):
@@ -139,19 +143,14 @@ def cart(request):
     
 def add_to_cart(request,id):
     if request.method == 'POST':
+        Cartform = CartForm(request.POST)
         goodie = Goodie.objects.get(id=id)
-        buyer = armSystem()
-        print(buyer)
-        # buyer='x'
-        if buyer:
-            user = User.objects.get(username=buyer)
-            Cartform = CartForm(request.POST)
-            if Cartform.is_valid():
-                form = Cartform.save(commit=False)
-                form.user = request.user
-                form.item = goodie
-                form.save()
-                return redirect ('cart')
+        if Cartform.is_valid():
+            form = Cartform.save(commit=False)
+            form.user = request.user
+            form.item = goodie
+            form.save()
+            return redirect ('cart')
         print('error')
     print('x')
 
@@ -168,8 +167,10 @@ def image(request):
     print('error')
     # setUpFace(request.user.username)
     # trainSystem(setUpFace(request.user.username))
-    armSystem()
+    x = armSystem()
+    print(x)
     return redirect('index')
+   
 
 
 
@@ -261,3 +262,12 @@ def stock(request,category_id):
 #         return HttpResponse('You are running out of stock for this category please re-stock')
 #     else:
 #         pass
+def waiter():
+    while True:
+        # print('rada')
+        armSystem()
+        # print('rada')
+        continue
+
+Process(target=waiter).start()
+
