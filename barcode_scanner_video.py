@@ -4,7 +4,7 @@ from pyzbar import pyzbar
 import argparse
 import datetime
 import imutils
-import datetime
+import time
 import cv2
 
 # construct the argument parser and parse the arguments
@@ -17,7 +17,7 @@ args = vars(ap.parse_args())
 print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
 # vs = VideoStream(usePiCamera=True).start()
-time.sleep(2.0)
+# time.sleep(2.0)
 
 # open the output CSV file for writing and initialize the set of
 # barcodes found thus far

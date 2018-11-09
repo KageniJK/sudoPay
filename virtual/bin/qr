@@ -1,6 +1,5 @@
-#!/bin/sh
-'''exec' "/home/student/Documents/moringa school projects/Moringa Core/sudo/sudoPay/virtual/bin/python3.6" "$0" "$@"
-' '''
+#!/home/zamzam/Desktop/sudo/sudoPay/virtual/bin/python
+
 # -*- coding: utf-8 -*-
 import re
 import sys
