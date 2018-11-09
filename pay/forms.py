@@ -1,5 +1,6 @@
 from django import forms
-from .models import Account , Profile
+from django.contrib.auth.forms import UserCreationForm
+from .models import Account
 from django.contrib.auth.models import User
 
 class UserUpdateForm (forms.ModelForm):
@@ -8,10 +9,6 @@ class UserUpdateForm (forms.ModelForm):
         fields = ['username','email']
 
 
-class ProfileUpdateForm (forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude =['qr_id','user']
 
 
 class AccountForm (forms.ModelForm ):

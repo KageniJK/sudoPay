@@ -4,9 +4,13 @@
 {% block content %}
 {{block.super}}
 
-
-<div class="container">
-    {% if request.user.profile.phone_number  %}
+<div id="rewis" class="ruff" >
+    <div style="background-color:rgba(0, 0, 0, 0.644); padding-bottom:445px;" class="home" id="overlay">
+        <h1 style="padding-bottom:45px;  color:#00A2B9;">SudoPay</h1>
+    </div>
+</div>
+    
+    {% if request.user.profile.phone_number %}
     <div class="row">
         {% if products %}
         {% for product in products %}
@@ -44,18 +48,17 @@
 
     </div>
 
-    <!-- <div class="col-md-3"></div>
-    <div class="col-md-3"></div>
-    <div class="col-md-3"></div> -->
-
-
-</div>
 {% else %}
-<div class="alert alert-danger ">
-    Please Create Update Your Profile To Start Shopping 
-</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Please Update Your Profile To Start Shopping 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
 {% endif %}
-</div>
+
+
 
 
 
