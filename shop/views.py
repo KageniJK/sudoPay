@@ -79,8 +79,8 @@ def image(request):
     print('error')
     # setUpFace(request.user.username)
     # trainSystem(setUpFace(request.user.username))
-    x = armSystem()
-    print(x)
+    # x = armSystem()
+    print('x')
     return redirect('index')
    
 

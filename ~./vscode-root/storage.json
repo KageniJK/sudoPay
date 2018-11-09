@@ -474,5 +474,25 @@
             "label": "Ctrl+Shift+B",
             "isNative": true
         }
+    },
+    "windowsState": {
+        "openedWindows": [],
+        "lastActiveWindow": {
+            "folderUri": {
+                "$mid": 1,
+                "fsPath": "/root/Documents/sudoPay",
+                "external": "file:///root/Documents/sudoPay",
+                "path": "/root/Documents/sudoPay",
+                "scheme": "file"
+            },
+            "backupPath": "/root/Documents/sudoPay/~./vscode-root/Backups/6208b2aad84b6337d2b17054229222bd",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 59,
+                "width": 1366,
+                "height": 709
+            }
+        }
     }
 }
