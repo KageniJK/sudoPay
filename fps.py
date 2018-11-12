@@ -8,7 +8,7 @@ import numpy as np
 
 
 # capture by the vieo camera
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
