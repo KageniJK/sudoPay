@@ -68,7 +68,6 @@ class Cart(models.Model):
     def delete_item(self):
         return self.delete()
 
-
     def __str__(self):
         return self.item.name
 

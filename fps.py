@@ -9,7 +9,7 @@ import tensorflow as ts
 
 
 # capture by the vieo camera
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -57,9 +57,9 @@ while(True):
             csv.flush()
             found.add(barcodeData)
 
-        # if the `q` key was pressed, break from the loop
-        if key == ord("q"):
-            break
+        # # if the `q` key was pressed, break from the loop
+        # if key == ord("q"):
+        #     break
 
     # Display the resulting frame
     cv2.imshow('frame',gray)

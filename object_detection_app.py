@@ -5,6 +5,8 @@ import argparse
 import multiprocessing
 import numpy as np
 import tensorflow as tf
+import datetime
+# from shop.models import Cart
 
 from utils.app_utils import FPS, WebcamVideoStream
 from multiprocessing import Queue, Pool
@@ -57,6 +59,10 @@ def detect_objects(image_np, sess, detection_graph):
         category_index,
         use_normalized_coordinates=True,
         line_thickness=4)
+
+    passed = np.squeeze(classes).astype(np.int32)
+    np.savetxt('classes.csv', passed, delimiter=",")
+
     return image_np
 
 
@@ -85,17 +91,20 @@ def worker(input_q, output_q):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-src', '--source', dest='video_source', type=int,
-                        default=1, help='Device index of the camera.')
-    parser.add_argument('-wd', '--width', dest='width', type=int,
-                        default=720, help='Width of the frames in the video stream.')
-    parser.add_argument('-ht', '--height', dest='height', type=int,
-                        default=480, help='Height of the frames in the video stream.')
-    parser.add_argument('-num-w', '--num-workers', dest='num_workers', type=int,
-                        default=2, help='Number of workers.')
-    parser.add_argument('-q-size', '--queue-size', dest='queue_size', type=int,
-                        default=5, help='Size of the queue.')
+    parser.add_argument('-src', '--source', dest='video_source', type=int, default=0, help='Device index of the camera.')
+    parser.add_argument('-wd', '--width', dest='width', type=int, default=720, help='Width of the frames in the video stream.')
+    parser.add_argument('-ht', '--height', dest='height', type=int, default=480, help='Height of the frames in the video stream.')
+    parser.add_argument('-num-w', '--num-workers', dest='num_workers', type=int, default=2, help='Number of workers.')
+    parser.add_argument('-q-size', '--queue-size', dest='queue_size', type=int, default=5, help='Size of the queue.')
+    # parser.add_argument('-w', '--writer', dest='writer', type=str, default='classes.csv', help='path to output CSV file with classes')
     args = parser.parse_args()
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-o", "--output", type=str, default="classes.csv", help="path to output CSV file containing classes")
+    args1 = vars(ap.parse_args())
+
+    csv = open(args1['output'], 'w')
+    found = set()
 
     logger = multiprocessing.log_to_stderr()
     logger.setLevel(multiprocessing.SUBDEBUG)
@@ -119,7 +128,7 @@ if __name__ == '__main__':
         cv2.imshow('Video', output_rgb)
         fps.update()
 
-        print('[INFO] elapsed time: {:.2f}'.format(time.time() - t))
+        # print('[INFO] elapsed time: {:.2f}'.format(time.time() - t))
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
