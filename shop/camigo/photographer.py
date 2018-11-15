@@ -12,9 +12,9 @@ class photographer:
     #take pictures of the subject
     def shoot(self, numPictures):
         faceCascade = cv2.CascadeClassifier(self.cascadePath)
-        cap = cv2.VideoCapture(0)        
+        cap = cv2.VideoCapture(1)        
         pic = 0
-        while pic <= 10:
+        while pic <= numPictures:
             ret, frame = cap.read()            
             cv2.imshow('video', frame) 
             hasFace = self.hasFace(frame, faceCascade)            

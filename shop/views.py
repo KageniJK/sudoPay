@@ -49,9 +49,10 @@ def cart(request):
         if item.user == request.user:
             price = item.item.price
             prices.append(price)
-            print(prices)
+            # print(prices)
     total = sum(prices)
-    return render(request,'cart.html',{"items":items,"total":total})
+
+    return render(request,'cart.html',{"items":items, "prices":prices, "total":total})
     
 def add_to_cart(request,id):
     if request.method == 'POST':
@@ -84,12 +85,12 @@ def image(request):
     return redirect('index')
    
 
-def waiter():
-    while True:
-        # print('rada')
-        armSystem()
-        # print('rada')
-        continue
+# def waiter():
+#     while True:
+#         # print('rada')
+#         armSystem()
+#         # print('rada')
+#         continue
 
-Process(target=waiter).start()
+# Process(target=waiter).start()
 

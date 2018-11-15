@@ -11,6 +11,7 @@ class trainer:
         faceCascade = cv2.CascadeClassifier(self.cascadePath)
         # recognizer = cv2.face.createLBPHFaceRecognizer()
         recognizer = cv2.face.LBPHFaceRecognizer_create()
+        # recognizer = cv2.face.LBPHFaceRecognizer_create()
         images, labels = self.getImagesAndLabels(self.imageRoot)        
         recognizer.train(images, np.array(labels))
         recognizer.save('shop/camigo/trainer.yml')

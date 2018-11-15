@@ -11,13 +11,24 @@ class Catalog(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    '''
+    Items category
+    '''
+    name = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField()
+
+
+    def __str__(self):
+        return self.name
+
 class Goodie ( models.Model ):
     '''
     Basically this is Shop Items Model
     '''
     name = models.CharField(max_length=250)
-    picture = models.ImageField(upload_to='static/shop',blank=True)
-    category = models.ForeignKey(Catalog)
+    picture = models.ImageField(upload_to='shopping',blank=True)
+    category = models.ForeignKey(Category,related_name='category')
     description = models.TextField()
     price = models.PositiveIntegerField()
     catalog_date = models.DateField(auto_now=True)

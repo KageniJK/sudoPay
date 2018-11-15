@@ -20,8 +20,8 @@ class watcher:
         recognizer.read('shop/camigo/trainer.yml')
 
         print ('loading recognizer and capturing video')
-        cap = cv2.VideoCapture(0)        
-    
+        cap = cv2.VideoCapture(1)        
+
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
@@ -44,19 +44,18 @@ class watcher:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (100, 250, 100), 2)
                 name ="intruder"
 
-
                 if conf < 65:                
                     name = "{0} {1}".format(knownPersons[prediction - 1], int(conf))
-                    result=name
                 else:
                     print ("intruder alert!!! calling 911")
-                    
+
                 cv2.putText(frame,name,(int(x), int(y)), font, 1,(255,255,255),2)
                 if (w > 0 and h > 0):
                     roi = frame[y:y+h, x:x+w]
+
             cv2.imshow('video', frame) 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-            
+
         cap.release()
         cv2.destroyAllWindows()

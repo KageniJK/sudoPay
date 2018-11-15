@@ -4,54 +4,61 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">
-    {% if request.user.profile.phone_number  %}
+<div id="rewis" class="ruff" >
+    <div style="background-color:rgba(0, 0, 0, 0.644); padding-bottom:245px;" class="home" id="overlay">
+        <h1 style="text-align: center; padding-top: 200px; font-size: 50px; color:#00A2B9;">SudoPay</h1>
+    </div>
+</div>
+    
+    {% if request.user.profile.phone_number %}
     <div class="row">
         {% if products %}
         {% for product in products %}
-        <div class="col-md-3">
-            <div class="card mb-3">
-                <h3 class="card-header">{{product.name|upper}}</h3>
-                <img style="height:auto; width: 100%; display: block;" src="{{ product.picture.url }}" alt="Card image">
-                <div class="card-body">
-                    <p class="card-text">
-                        {{product.description}}
-                    </p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item ">
-                        <a class="list-group-item list-group-item-action active" href="/sudopay/checkout/{{ product.id }}"> checkout </a>
-                        <br>
-                        <form action="/add/{{product.id}}/" method="post" enctype="multipart/form-data"> 
+        <div class="col-md-4 col-sm-6">
+            <div class="product-grid2">
+              <div class="product-image2">
+                  
+                  <a href="#">
+                      <img class="pic-1" src="{{product.picture.url}}">
+                      <img class="pic-2" src="{{product.picture.url}}">
+                  </a>
+                  <ul class="social">
+                      
+                      <li><a href="#" data-tip="Add to favourites"><i class="fa fa-heart-o"></i></a></li>
+                      
+                  </ul>
+                  <form action="/add/{{product.id}}/" method="post" enctype="multipart/form-data"> 
 
-                            {%csrf_token%}
-                        
-                            {% bootstrap_form Cartform %}
-                            <input type="submit" class="btn btn-outline-success" value="Add To Cart">
-                        </form>
+                    {%csrf_token%}
                 
-                    </li>
-                </ul>
+                    {% bootstrap_form Cartform %}
+                    <input type="submit" class="btn btn-outline-success" value="Add To Cart">
+                </form>
+                </div>
+                <div class="product-content">
+                    <span class="price">${{product.price}}</span> 
+                </div>
             </div>
         </div>
+    
         {% endfor %}
         {% endif %}
 
     </div>
 
-    <!-- <div class="col-md-3"></div>
-    <div class="col-md-3"></div>
-    <div class="col-md-3"></div> -->
-
-
-</div>
 {% else %}
-<div class="alert alert-danger ">
-    Please Create Update Your Profile To Start Shopping 
-</div>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Please Update Your Profile To Start Shopping 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
 {% endif %}
-</div>
+
+
 
 
 
 {% endblock %}
+
