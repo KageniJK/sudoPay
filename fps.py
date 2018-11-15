@@ -5,10 +5,11 @@ import imutils
 import time
 import cv2
 import numpy as np
+import tensorflow as ts
 
 
 # capture by the vieo camera
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
