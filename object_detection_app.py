@@ -60,8 +60,10 @@ def detect_objects(image_np, sess, detection_graph):
         use_normalized_coordinates=True,
         line_thickness=4)
 
-    passed = np.squeeze(classes).astype(np.int32)
-    np.savetxt('classes.csv', passed, delimiter=",")
+    passed = [category_index.get(value) for index,value in enumerate(classes[0]) if scores[0,index] > 0.5]
+    # np.savetxt('classes.csv', sess, delimiter=",")
+
+    print(passed[0]['name'])
 
     return image_np
 
